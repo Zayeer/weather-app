@@ -7,3 +7,4 @@ Skills used:
 	* Vanilla Javascript/ES6/Asynchronous JS(fetch/async-await)
 
 
+[View Online](https://zayeer.github.io/weather-app/)
