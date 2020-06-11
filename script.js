@@ -20,7 +20,6 @@ const asynchronousTasks = (() => {
     }
 
     const accessAppropriateGif = async(gifURL) => {
-        console.log(gifURL);
         const gifResponse = await fetch(gifURL);
         if (gifResponse.status !== 200) {
             throw Error("Not Found");
