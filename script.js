@@ -84,7 +84,7 @@ const locationAccessFailure = () => {
     if (location.protocol === "http:") {
         cityNameURL = `http://api.openweathermap.org/data/2.5/weather?q=new delhi&appid=f481182c63cfe95ca3bec984a6378f17`;
     } else {
-        cityNameURL = `http://api.openweathermap.org/data/2.5/weather?q=new delhi&appid=f481182c63cfe95ca3bec984a6378f17`;
+        cityNameURL = `https://api.openweathermap.org/data/2.5/weather?q=new delhi&appid=f481182c63cfe95ca3bec984a6378f17`;
     }
     accessData(cityNameURL);
 }
