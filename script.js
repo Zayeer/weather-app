@@ -69,16 +69,31 @@ function accessData(url) {
     });
 }
 
-navigator.geolocation.watchPosition((position) => {
+const locationAccessSuccess = (position) => {
     let latAndLongURL;
-    if(location.protocol === "http:") {
+    if (location.protocol === "http:") {
         latAndLongURL = `http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=f481182c63cfe95ca3bec984a6378f17`;
     } else {
         latAndLongURL = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=f481182c63cfe95ca3bec984a6378f17`;
     }
     accessData(latAndLongURL);
-});
+}
 
+const locationAccessFailure = () => {
+    let cityNameURL;
+    if (location.protocol === "http:") {
+        cityNameURL = `http://api.openweathermap.org/data/2.5/weather?q=new delhi&appid=f481182c63cfe95ca3bec984a6378f17`;
+    } else {
+        cityNameURL = `http://api.openweathermap.org/data/2.5/weather?q=new delhi&appid=f481182c63cfe95ca3bec984a6378f17`;
+    }
+    accessData(cityNameURL);
+}
+
+if (!navigator.geolocation) {
+    locationAccessFailure();
+} else {
+    navigator.geolocation.watchPosition(locationAccessSuccess, locationAccessFailure);
+}
 
 
 cOrF.addEventListener("click", () => {
