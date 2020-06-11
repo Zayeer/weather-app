@@ -34,14 +34,22 @@ const asynchronousTasks = (() => {
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
-    const cityNameURL = `http://api.openweathermap.org/data/2.5/weather?q=${event.target.firstElementChild.value}&appid=f481182c63cfe95ca3bec984a6378f17`;
+    if(location.protocol === "http:") {
+        const cityNameURL = `http://api.openweathermap.org/data/2.5/weather?q=${event.target.firstElementChild.value}&appid=f481182c63cfe95ca3bec984a6378f17`;
+    } else {
+        const cityNameURL = `https://api.openweathermap.org/data/2.5/weather?q=${event.target.firstElementChild.value}&appid=f481182c63cfe95ca3bec984a6378f17`;
+    }
     accessData(cityNameURL);
 });
 
 function accessData(url) {
     asynchronousTasks.accessWeatherData(url).then((data)=> {
         duplicateData = data;
-        const gifURL = `http://api.giphy.com/v1/gifs/search?q=${duplicateData.weather[0].main}&api_key=u24N0Slud9p19OanROCrN8KeIIKTjKTw&limit=1`;
+        if(location.protocol === "http") {
+            const gifURL = `http://api.giphy.com/v1/gifs/search?q=${duplicateData.weather[0].main}&api_key=u24N0Slud9p19OanROCrN8KeIIKTjKTw&limit=1`;
+        } else {
+            const gifURL = `https://api.giphy.com/v1/gifs/search?q=${duplicateData.weather[0].main}&api_key=u24N0Slud9p19OanROCrN8KeIIKTjKTw&limit=1`;
+        }
         return asynchronousTasks.accessAppropriateGif(gifURL);
     }).then(gifData => {
         weatherImage.src = gifData.data[0].images.original.url;
@@ -60,62 +68,12 @@ function accessData(url) {
     });
 }
 
-/*function accessData(url) {
-
-    accessWeatherData(url).then((data) => {
-        if (data) {
-            duplicateData = JSON.parse(data);
-            accessAppropriateGif(duplicateData.weather[0].main).then((data) => {
-                if (data) {
-                    const gif = JSON.parse(data);
-                    weatherImage.src = gif.data[0].images.original.url;
-                    weatherImage.setAttribute("style",
-                        "display: block; animation: imageAnimation 5s linear 0 1; opacity: 0.6; z-index: -10");
-                    assignValuesToDomElements(duplicateData);
-                    failure.style.display = "none";
-                    success.style.display = "grid";
-                }
-            });
-        }
-    }).catch(err => {
-        failure.innerText = err;
-        success.style.display = "none";
-        failure.style.display = "grid";
-        accessAppropriateGif("sorry").then(data => {
-            if (data) {
-                const gif = JSON.parse(data);
-                weatherImage.src = gif.data[0].images.original.url;
-                weatherImage.style.opacity = "0.6";
-                weatherImage.style.zIndex = -10;
-            }
-        });
-    });
-}*/
-
-
-/*const accessWeatherData = (url) => {
-    return new Promise((resolve, reject) => {
-        const request = new XMLHttpRequest();
-        request.addEventListener("readystatechange", () => {
-            if (request.readyState === 4 && request.status === 200) {
-                loadingWrapper.style.display = "none";
-                resolve(request.responseText);
-            } else if (request.readyState === 4) {
-                loadingWrapper.style.display = "none";
-                reject("");
-            } else {
-                loadingWrapper.style.display = "flex";
-            }
-        });
-        request.open("GET", url);
-        request.send();
-    });
-}*/
-
-
-
 navigator.geolocation.watchPosition((position) => {
-    const latAndLongURL = `http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=f481182c63cfe95ca3bec984a6378f17`;
+    if(location.protocol === "http:") {
+        const latAndLongURL = `http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=f481182c63cfe95ca3bec984a6378f17`;
+    } else {
+        const latAndLongURL = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=f481182c63cfe95ca3bec984a6378f17`;
+    }
     accessData(latAndLongURL);
 });
 
@@ -138,26 +96,6 @@ function displayDataToggle() {
         assignValuesToDomElements(duplicateData);
     }
 }
-
-
-
-/*document.querySelector("#cityName").addEventListener("blur", () => {
-    document.querySelector("#cityName").value="";
-});*/
-
-/*function accessAppropriateGif(weatherDesc) {
-    return new Promise((addBackgroundImage, err) => {
-        const url = `http://api.giphy.com/v1/gifs/search?q=${weatherDesc}&api_key=u24N0Slud9p19OanROCrN8KeIIKTjKTw&limit=1`;
-        const request = new XMLHttpRequest();
-        request.addEventListener("readystatechange", () => {
-            if (request.readyState === 4 && request.status === 200) {
-                addBackgroundImage(request.responseText);
-            }
-        });
-        request.open("GET", url);
-        request.send();
-    });
-} */
 
 
 function assignValuesToDomElements(data) {
