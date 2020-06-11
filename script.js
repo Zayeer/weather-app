@@ -34,10 +34,11 @@ const asynchronousTasks = (() => {
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
+    let cityNameURL;
     if(location.protocol === "http:") {
-        const cityNameURL = `http://api.openweathermap.org/data/2.5/weather?q=${event.target.firstElementChild.value}&appid=f481182c63cfe95ca3bec984a6378f17`;
+        cityNameURL = `http://api.openweathermap.org/data/2.5/weather?q=${event.target.firstElementChild.value}&appid=f481182c63cfe95ca3bec984a6378f17`;
     } else {
-        const cityNameURL = `https://api.openweathermap.org/data/2.5/weather?q=${event.target.firstElementChild.value}&appid=f481182c63cfe95ca3bec984a6378f17`;
+        cityNameURL = `https://api.openweathermap.org/data/2.5/weather?q=${event.target.firstElementChild.value}&appid=f481182c63cfe95ca3bec984a6378f17`;
     }
     accessData(cityNameURL);
 });
@@ -45,10 +46,11 @@ form.addEventListener("submit", (event) => {
 function accessData(url) {
     asynchronousTasks.accessWeatherData(url).then((data)=> {
         duplicateData = data;
-        if(location.protocol === "http") {
-            const gifURL = `http://api.giphy.com/v1/gifs/search?q=${duplicateData.weather[0].main}&api_key=u24N0Slud9p19OanROCrN8KeIIKTjKTw&limit=1`;
+        let gifURL;
+        if(location.protocol === "http:") {
+            gifURL = `http://api.giphy.com/v1/gifs/search?q=${duplicateData.weather[0].main}&api_key=u24N0Slud9p19OanROCrN8KeIIKTjKTw&limit=1`;
         } else {
-            const gifURL = `https://api.giphy.com/v1/gifs/search?q=${duplicateData.weather[0].main}&api_key=u24N0Slud9p19OanROCrN8KeIIKTjKTw&limit=1`;
+            gifURL = `https://api.giphy.com/v1/gifs/search?q=${duplicateData.weather[0].main}&api_key=u24N0Slud9p19OanROCrN8KeIIKTjKTw&limit=1`;
         }
         return asynchronousTasks.accessAppropriateGif(gifURL);
     }).then(gifData => {
@@ -69,10 +71,11 @@ function accessData(url) {
 }
 
 navigator.geolocation.watchPosition((position) => {
+    let latAndLongURL;
     if(location.protocol === "http:") {
-        const latAndLongURL = `http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=f481182c63cfe95ca3bec984a6378f17`;
+        latAndLongURL = `http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=f481182c63cfe95ca3bec984a6378f17`;
     } else {
-        const latAndLongURL = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=f481182c63cfe95ca3bec984a6378f17`;
+        latAndLongURL = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=f481182c63cfe95ca3bec984a6378f17`;
     }
     accessData(latAndLongURL);
 });
