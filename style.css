@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&family=Tenali+Ramakrishna&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    background-color: #FAD7A0;
+    color: #27AE60;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    height: 15vh;
+    font-family: 'Balsamiq Sans', cursive;
+}
+
+#main-content {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    height: 85vh;
+    font-family: 'Tenali Ramakrishna', sans-serif;
+}
+
+
+#form, .cOrF {
+    margin: 50px auto;
+}
+
+#form {
+    width: 70%;
+    border: 2px solid #fff;
+    background: #fff;   
+    border-radius: 10px;
+    height: 2em;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    grid-gap: 5px;
+}
+
+#cityInput, #form>button {
+    height: 100%;
+    border-radius: 10px;
+    border: none;
+    background-color: #FAD7A0;
+}
+
+#cityInput:focus {
+    outline: none;
+}
+
+#cityInput {
+    font-family: 'Tenali Ramakrishna', sans-serif;
+    font-size: 1.2em;
+    display: flex;
+    text-align: center;
+}
+
+#form>button {
+    background-color: #ccc;
+}
+
+#form>button:focus {
+    outline: none;
+}
+
+.cOrF {
+    display: flex;
+    width: 70%;
+    justify-content: center;
+    font-size: 1.5em;
+    align-self: center;
+}
+
+.cOrF>p, .fas {
+    margin: 0 10px;
+}
+
+.fas:hover {
+    cursor: pointer;
+}
+
+.success {
+    display: none;
+    height: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    color: #ddd;
+    text-shadow: 2px 2px #FF0000;
+}
+
+.failure {
+    display: none;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 10em;
+    color: #ddd;
+    text-shadow: 2px 2px #FF0000;
+}
+
+
+.displayTemp {
+    text-align: center;
+    font-size: 8em;
+    position: relative;
+}
+
+.displayTemp>sup {
+    position: absolute;
+    bottom: 60%;
+}
+
+.cSymbolTemp, .fSymbolTemp {
+    font-size: 0.3em;
+}
+
+.displayAddData {
+    font-size: 1.8em;
+}
+
+.displayAddData>div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    line-height: 2em;
+    border-bottom: 2px solid #555;
+    position: relative;
+}
+
+.cSymbol, .fSymbol {
+    font-size: 0.5em;
+    position: absolute;
+    bottom: 20%;
+}
+
+.displayAddData>div>p:last-child {
+    text-align: center;
+}
+
+.loading-wrapper {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    height: 85vh;
+    justify-content: center;
+}
+
+.loading-circle {
+    border: 10px solid #555;
+    height: 5%;
+    width: 2.5%;
+    border-left: 10px solid #27AE60;
+    border-right: 10px solid #27AE60;
+    border-radius: 50%;
+    position: relative;
+    left: -100px;
+    animation: rotate 2s linear 0s infinite, moveCircle 2s linear 0s infinite;
+}
+
+.loading-wrapper>p{
+    margin-top: 10px;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(-360deg);
+    }
+
+    50% {
+        transform: rotate(360deg)
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes moveCircle {
+    0% {
+        left: -100px;
+    }
+
+    50% {
+        left: 100px;
+    }
+
+    100% {
+        left: -100px;
+    }
+}
+
+.weather-image {
+    display: none;
+    position: relative;
+    bottom: 35em;
+    left: 20em;
+    height: 85vh;
+    width: 80vw;
+    border-top-left-radius: 30%;
+}
+
+@keyframes imageAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

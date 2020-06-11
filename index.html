@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/65b8015b08.js" crossorigin="anonymous"></script>
+    <title>Weather Check</title>
+</head>
+<body>
+    <div class="nav">
+        <h1>Weather Check</h1>
+    </div>
+    <div id="main-content">
+        <div class="userInput">
+            <form id="form">
+                <input type="text" placeholder="City Name" id="cityInput">
+                <button><i class="fas fa-search"></i></button>
+            </form>
+            <div class="cOrF">
+                <p>C</p> 
+                <i class="fas fa-toggle-off"></i> 
+                <p>F</p>
+            </div>
+        </div>
+        <div class = "dataRecieved">
+            <div class="success">
+                <h1 class="displayTemp">
+                    
+                </h1>
+                <div class="displayAddData">
+                    <div class="city">
+                        <p>City</p>
+                        <p class="cityName"></p>
+                    </div>
+                    <div class="country">
+                        <p>Country</p>
+                        <p class="countryName"></p>
+                    </div>
+                    <div class="weatherDesc">
+                        <p>Weather Description</p>
+                        <p class="weatherDescVal"></p>
+                    </div>
+                    <div class="feelsLike">
+                        <p>Feels Like</p>
+                        <p class="fl-val"></p>
+                    </div>
+                    <div class="minTemp">
+                        <p>Minimum Temperature</p>
+                        <p class="minTempVal"></p>
+                    </div>
+                    <div class="maxTemp">
+                        <p>Maximum Temperature</p>
+                        <p class="maxTempVal"></p>
+                    </div>
+                    <div class="humidity">
+                        <p>Humidity</p>
+                        <p class="humidityVal"></p>
+                    </div>
+                </div>
+            </div>    
+            <div class="failure">
+
+            </div>
+            <div class="loading-wrapper">
+                <div class="loading-circle">
+
+                </div>
+                <p>Please Wait</p>
+            </div>
+        </div>
+    </div>
+    <img class="weather-image" />
+    <script src="script.js"></script>
+</body>
+</html> 
