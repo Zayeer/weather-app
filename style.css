@@ -205,11 +205,14 @@ body {
 .weather-image {
   display: none;
   position: relative;
-  bottom: 33em;
+  bottom: 35em;
   left: 18em;
-  height: 87vh;
+  height: 85vh;
   width: 80vw;
   border-top-left-radius: 30%;
+  border-right: 2px solid #27ae60;
+  border-top: 2px solid #27ae60;
+  box-shadow: -5px -5px 10px #27ae60;
 }
 
 @keyframes imageAnimation {
