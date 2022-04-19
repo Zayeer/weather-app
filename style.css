@@ -205,8 +205,8 @@ body {
 .weather-image {
   display: none;
   position: relative;
-  bottom: 35em;
-  left: 18em;
+  bottom: 80vh;
+  left: 20vw;
   height: 85vh;
   width: 80vw;
   border-top-left-radius: 30%;
